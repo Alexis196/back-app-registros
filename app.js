@@ -6,9 +6,7 @@ const app = express();
 
 // Middlewares
 app.use(express.json());
-app.use(cors({
-    origin: "*"
-}));
+app.use(cors());
 
 // Rutas
 app.use('/api', indexRoutes);
