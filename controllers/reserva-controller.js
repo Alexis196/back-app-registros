@@ -45,20 +45,29 @@ export const crearReserva = async (req, res, next) => {
 
 
 // Actualizar una reserva existente
+// controllers/reserva-controller.js
 export const actualizarReserva = async (req, res, next) => {
-    const { id, cancha, usuario, fecha, hora } = req.body;
+    const { id } = req.params;
+    const { cancha, usuario, fecha, hora } = req.body;
+
     try {
         const reservaActualizada = await Reserva.findByIdAndUpdate(
             id,
             { cancha, usuario, fecha, hora },
             { new: true }
         );
+
+        if (!reservaActualizada) {
+            return res.status(404).json({ mensaje: "Reserva no encontrada" });
+        }
+
         res.json(reservaActualizada);
     } catch (err) {
         console.error(err.message);
         next(err);
     }
 };
+
 
 
 export const eliminarReserva = async (req, res, next) => {

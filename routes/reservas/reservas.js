@@ -6,7 +6,9 @@ const router = Router();
 // Rutas
 router.get('/obtenerReservas', obtenerReservas);
 router.post('/reservar', crearReserva);
-router.put('/modificar-reserva', actualizarReserva);
+// routes/reserva-routes.js
+router.put('/modificar-reserva/:id', actualizarReserva);
+
 router.delete('/eliminar-reserva/:id', eliminarReserva);
 
 export default router;
